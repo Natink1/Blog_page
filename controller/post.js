@@ -61,10 +61,10 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatepost = await post.findOneAndDelete(id);
+    const updatepost = await post.findOneAndDelete({_id: id});
 
-    if (updatepost.matchedCount === 0) {
-      return res.status(404).json({ message: "Post not found" });
+    if (!updatepost) {
+      return res.status(404).json({ message: "No Post found to Delete" });
     }
 
     res.json({
