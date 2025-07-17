@@ -11,9 +11,12 @@ export const createPost = async (req, res) => {
 };
 
 export const listPosts = async (req, res) => {
-  const posts = await post.find({});
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  const posts = await post.find().skip(skip).limit(limit)
 
-  if (posts === 0) {
+  if (posts.length === 0) {
     return res.status(404).json({ msg: "No data Found" });
   }
 
@@ -61,7 +64,7 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatepost = await post.findOneAndDelete({_id: id});
+    const updatepost = await post.findOneAndDelete({ _id: id });
 
     if (!updatepost) {
       return res.status(404).json({ message: "No Post found to Delete" });
