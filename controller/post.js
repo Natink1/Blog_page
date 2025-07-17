@@ -21,12 +21,39 @@ export const listPosts = async (req, res) => {
 };
 
 export const listSinglePost = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const singlePost = await post.findById(id);
 
-  if(!singlePost){
-    return res.json({msg:"Blog Not Found"})
+  if (!singlePost) {
+    return res.json({ msg: "Blog Not Found" });
   }
 
   res.json(singlePost);
+};
+
+export const updatePost = async (req, res) => {
+  try {
+    const update = req.body;
+    const { id } = req.params;
+    const updatepost = await post.findByIdAndUpdate(
+      id,
+      { $set: update },
+      { new: true }
+    );
+
+    if (updatepost.matchedCount === 0) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.json({
+      message: "Post updated successfully",
+      updatedFields: Object.keys(updatepost),
+      updatepost,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Update failed",
+      error: error.message,
+    });
+  }
 };
