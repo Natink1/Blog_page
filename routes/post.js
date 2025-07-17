@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createPost,
+  deletePost,
   listPosts,
   listSinglePost,
   updatePost,
@@ -14,5 +15,6 @@ postRouter.post("/createpost", createPost);
 postRouter.get("/posts", listPosts);
 postRouter.get("/post/:id", listSinglePost);
 postRouter.patch("/post/edit/:id", updatePost);
+postRouter.delete("/delete/:id", deletePost);
 
 export default postRouter;
