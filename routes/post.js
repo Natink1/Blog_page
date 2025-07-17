@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPost, listPosts } from "../controller/post.js";
+import { createPost, listPosts, listSinglePost } from "../controller/post.js";
 const postRouter = Router();
 
 // postRouter.use("/");
@@ -7,5 +7,6 @@ const postRouter = Router();
 
 postRouter.post("/createpost", createPost);
 postRouter.get("/posts", listPosts);
+postRouter.get("/post/:id", listSinglePost);
 
 export default postRouter;

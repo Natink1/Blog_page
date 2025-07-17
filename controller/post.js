@@ -19,3 +19,14 @@ export const listPosts = async (req, res) => {
 
   res.json(posts);
 };
+
+export const listSinglePost = async (req, res) => {
+  const {id} = req.params;
+  const singlePost = await post.findById(id);
+
+  if(!singlePost){
+    return res.json({msg:"Blog Not Found"})
+  }
+
+  res.json(singlePost);
+};
