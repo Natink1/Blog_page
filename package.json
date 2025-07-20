@@ -10,15 +10,26 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natink1/Blog_page.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Natink1/Blog_page/issues"
+  },
+  "homepage": "https://github.com/Natink1/Blog_page#readme",
+  "description": ""
 }
