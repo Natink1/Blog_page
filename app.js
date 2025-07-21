@@ -1,9 +1,6 @@
-// Import Express
 import express from "express";
-import postRouter from "./routes/post.js";
 import mongoose from "mongoose";
-import userRouter from "./routes/user.js";
-
+import rootRouter from "./routes/root.js";
 // Connect to MongoDB
 mongoose
   .connect("mongodb://127.0.0.1:27017/Blog", {
@@ -21,8 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
-app.use("/api", postRouter);
-app.use("/api", userRouter);
+app.use("/api", rootRouter);
 
 // Start the server
 
