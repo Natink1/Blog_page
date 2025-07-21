@@ -22,7 +22,7 @@ export const login = async (req, res) => {
 
     // Generate JWT token
     const token = jwt.sign(
-      { id: user._id },
+      { id: user._id, role: user.role },
       process.env.JWT_SECRET, // Secret key (store in .env)
       { expiresIn: process.env.JWT_EXPIRES_IN || "1h" } // Optional: Token expiry
     );

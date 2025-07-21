@@ -63,6 +63,7 @@ export const updatePost = async (req, res) => {
 };
 
 export const deletePost = async (req, res) => {
+  
   try {
     const { id } = req.params;
     const updatepost = await post.findOneAndDelete({ _id: id });

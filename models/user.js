@@ -7,8 +7,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+
   password: String,
   createdAt: { type: Date, default: Date.now },
+  role: {
+    type: String, // The type of the field will be String
+    required: true, // Make it a required field
+    enum: ["ADMIN", "USER"], // This is where you define the enum values
+    default: "USER", // Set
+  },
 });
 
 userSchema.pre("save", async function (next) {
