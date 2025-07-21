@@ -14,7 +14,7 @@ export const listPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
   const skip = (page - 1) * limit;
-  const posts = await post.find().skip(skip).limit(limit)
+  const posts = await post.find().skip(skip).limit(limit);
 
   if (posts.length === 0) {
     return res.status(404).json({ msg: "No data Found" });
@@ -38,13 +38,14 @@ export const updatePost = async (req, res) => {
   try {
     const update = req.body;
     const { id } = req.params;
+
     const updatepost = await post.findByIdAndUpdate(
-      id,
+      { _id: id },
       { $set: update },
       { new: true }
     );
 
-    if (updatepost.matchedCount === 0) {
+    if (!updatepost) {
       return res.status(404).json({ message: "Post not found" });
     }
 

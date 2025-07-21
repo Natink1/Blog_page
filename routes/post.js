@@ -6,15 +6,16 @@ import {
   listSinglePost,
   updatePost,
 } from "../controller/post.js";
+import { authmiddleware } from "../middlewares/authmiddleware.js";
 const postRouter = Router();
 
 // postRouter.use("/");
 // postRouter.use("post/:id");
 
-postRouter.post("/createpost", createPost);
+postRouter.post("/admin/createpost", [authmiddleware], createPost);
 postRouter.get("/posts", listPosts);
 postRouter.get("/post/:id", listSinglePost);
-postRouter.patch("/post/edit/:id", updatePost);
-postRouter.delete("/delete/:id", deletePost);
+postRouter.patch("/admin/post/edit/:id", [authmiddleware], updatePost);
+postRouter.delete("/admin/delete/:id", [authmiddleware], deletePost);
 
 export default postRouter;

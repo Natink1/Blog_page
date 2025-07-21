@@ -6,6 +6,6 @@ import postRouter from "./post.js";
 const rootRouter = new Router();
 
 rootRouter.use("/auth", userRouter);
-rootRouter.use("/admin", [authmiddleware], postRouter);
+rootRouter.use("/", postRouter);
 
 export default rootRouter;
