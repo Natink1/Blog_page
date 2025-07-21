@@ -2,6 +2,7 @@
 import express from "express";
 import postRouter from "./routes/post.js";
 import mongoose from "mongoose";
+import userRouter from "./routes/user.js";
 
 // Connect to MongoDB
 mongoose
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use("/api", postRouter);
+app.use("/api", userRouter);
 
 // Start the server
 
